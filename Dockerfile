@@ -1,6 +1,11 @@
 FROM adalessa/php-apache-laravel:5.6
 
-RUN apt-get update && apt-get install -y xz-utils
+RUN apt-get update && apt-get install -y \	
+    libz-dev \
+    libmemcached-dev \
+    xz-utils
+RUN pecl install memcached
+RUN echo extension=memcached.so >> /usr/local/etc/php/conf.d/memcached.ini
 
 # gpg keys listed at https://github.com/nodejs/node
 RUN set -ex \
@@ -25,5 +30,3 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc"
 RUN gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc 
 RUN grep " node-v$NODE_VERSION-linux-x64.tar.xz\$" SHASUMS256.txt | sha256sum -c - 
 RUN tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 
-RUN rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt
-
