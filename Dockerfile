@@ -1,5 +1,6 @@
 FROM adalessa/laravel-container:5.6
 
+WORKDIR /tmp
 RUN apt-get update && apt-get install -y \	
     libz-dev \
     libmemcached-dev \
@@ -30,3 +31,5 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc"
 RUN gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc 
 RUN grep " node-v$NODE_VERSION-linux-x64.tar.xz\$" SHASUMS256.txt | sha256sum -c - 
 RUN tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 
+
+WORKDIR /var/www/html
