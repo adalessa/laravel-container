@@ -1,4 +1,4 @@
-#A container for Laravel
+##A container for Laravel
 
 This container has the basic extensions and configuration to run a laravel application. Base on the php official containers I create my own ones.
 
@@ -55,6 +55,22 @@ To run the command from the container you can use docker-composer instead of doc
 
     docker-composer exec web composer install
 
-  
+## Deploy 
+To deploy your application you may want to create your own container with your application in it instead of link the code from yout machine
+
+    FROM adalessa/laravel-container
+    COPY ./code /var/www/html
+    RUN composer install
+    RUN npm install
+    RUN npm run prod
+    RUN chown -R www-data:www-data /var/www/html
+
+To build your container you may run
+
+    docker build -t my-awsome-app .
+
+
+
+
 Github: https://github.com/adalessa/laravel-container
 
