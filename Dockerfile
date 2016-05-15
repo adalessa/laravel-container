@@ -1,4 +1,4 @@
-FROM adalessa/php-apache-laravel:5.6
+FROM adalessa/laravel-container:5.6
 
 RUN apt-get update && apt-get install -y \	
     libz-dev \
