@@ -8,7 +8,7 @@ The latest containers also includes support for memcached. Composer and node js 
 
 To run a single container you only need to run
 
-    docker run --name myApp -p 8080:80 -v "$PWD":/var/www/html adalessa/php-apache-laravel
+    docker run --name myApp -p 8080:80 -v "$PWD":/var/www/html adalessa/laravel-container
  
 
 
@@ -32,7 +32,7 @@ You can create an application from scratch with this container, since composer i
  docker-composer.yml 
 
     web:
-      image: adalessa/php-apache-laravel
+      image: adalessa/laravel-container
       ports:
         - "5000:80"
       volumes:
@@ -56,5 +56,5 @@ To run the command from the container you can use docker-composer instead of doc
     docker-composer exec web composer install
 
   
-Github: https://github.com/adalessa/DockerLaravel
+Github: https://github.com/adalessa/laravel-container
 
