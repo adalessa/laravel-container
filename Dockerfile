@@ -22,16 +22,10 @@ RUN a2dissite 000-default.conf
 RUN a2ensite site-default.conf
 RUN service apache2 restart
 
-# memecached
-RUN apt-get install -y \	
-    libz-dev \
-    libmemcached-dev \
-    xz-utils
-RUN pecl install memcached
-RUN echo extension=memcached.so >> /usr/local/etc/php/conf.d/memcached.ini
 
 # Node js installation
 # gpg keys listed at https://github.com/nodejs/node
+RUN apt-get install -y xz-utils
 RUN set -ex \
   && for key in \
     9554F04D7259F04124DE6B476D5A82AC7E37093B \
