@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y \
 	&& docker-php-ext-install mcrypt \
 	&& docker-php-ext-install mbstring \
 	&& docker-php-ext-install zip \
+	&& docker-php-ext-install pcntl \
+	&& docker-php-ext-install bcmath \
 	&& docker-php-ext-install pdo_mysql
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"\
